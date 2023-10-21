@@ -1,0 +1,197 @@
+<!--html version 5-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #FFB6C1;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            font-size: 18px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #F5F5DC;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            font-size: 16px;
+        }
+
+        select {
+            font-size: 16px;
+        }
+
+        option {
+            font-size: 16px;
+        }
+
+        h1,
+        h4 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        #result {
+            background-color: #FFB6C1;
+            color: black;
+            text-align: center;
+            padding: 25px;
+            margin-top: 25px;
+        }
+    </style>
+    <!--รองรับภาษา unicode-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title bar-->
+    <title>คำนวณเวลา</title>
+    <!--bootstrap front-end framework-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Content here -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form>
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-5">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+
+                            <div class="form-check form-check-inline">
+
+                            </div>
+
+                            <div class="form-check form-check-inline">
+
+                            </div>
+
+
+
+                            <div class="form-group row">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+
+
+                            <h1>Hours Calculator</h1>
+                            <label for="time">Hours Calculator:</label>
+                           
+
+                        </div>
+
+                        <button class="btn btn-outline-success" onclick="calculate()" type="button">Calculate</button>
+                        <button class="btn btn-sm btn-outline-secondary" type="button">Clear</button>
+
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>
+                    <p id="start"></p>
+                    <p id="stop"></p>
+                    <p id="result"></p>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculate() {
+            const startTime = document.getElementById("start").value;
+            const endTime = document.getElementById("stop").value;
+
+            if (startTime === "" || endTime === "") {
+                alert("โปรดระบุเวลา");
+                return;
+            }
+
+            const tstart = new Date(`2000-01-01T${startTime}`);
+            const tend = new Date(`2000-01-01T${endTime}`);
+
+            if (tend < tstart) {
+                alert("End time must be later than start time.");
+                return;
+            }
+
+            const timeDiff = tend - tstart;
+            const hours = Math.floor(timeDiff / 3600000);
+            const minutes = Math.floor((timeDiff % 3600000) / 60000);
+
+            const result = `เวลาห่างกัน : ${hours} ชั่วโมง ${minutes} นาที`;
+            document.getElementById("result").textContent = result;
+        }
+
+    </script>
+</body>
+
+</html>
